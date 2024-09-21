@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Alert</title>
+    <style>
+        /* Your CSS styles for the email alert */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .email-alert {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .email-alert-content {
+            padding: 20px;
+        }
+
+        .email-alert h2 {
+            color: #ff5722;
+            margin-bottom: 10px;
+        }
+
+        .email-alert p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .bell-icon:before {
+            content: "\1F514"; /* Unicode for bell icon */
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        .company-details {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Highlighting styles */
+        .highlight {
+            font-weight: bold;
+            font-size: 14px; /* Increased size */
+        }
+    </style>
+</head>
+<body>
+    <div class="email-alert">
+        <div class="email-alert-content">
+            <h2>Device Alert!</h2>
+            <p class="attention">
+                <span style="font-size: 24px;">&#x1F514;</span>
+                <strong>Warning:</strong> We're reaching out to alert you that device 
+                <span id="device-name" class="highlight"><%= Device.DeviceName %></span> 
+                (UID: <span id="device-uid" class="highlight"><%= Device.DeviceUID %></span>) 
+                has surpassed its Trigger value. It's crucial to promptly inspect the device for any unwarranted alerts. 
+                Immediate action can mitigate potential risks or interruptions to its functionality.
+            </p>
+            <p>Thank you for your attention to this matter.</p>
+        </div>
+    </div>
+
+    <script>
+        // Get device UID and name
+        var deviceUID = "<%= Device.DeviceUID %>";
+        var deviceName = "<%= Device.DeviceName %>";
+        document.getElementById('device-uid').innerText = deviceUID;
+        document.getElementById('device-name').innerText = deviceName;
+    </script>
+</body>
+</html>

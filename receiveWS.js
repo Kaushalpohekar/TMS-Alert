@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 const path = require('path');
 
-const ws = new WebSocket('ws://senso.senselive.in:3100');
+const ws = new WebSocket('ws://localhost:3100');
 
 ws.on('open', () => {
     console.log('Connected to the WebSocket server');

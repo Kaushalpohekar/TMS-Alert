@@ -100,7 +100,8 @@ async function sendMail(Device) {
 
         const mailOptions = {
             from: 'donotreplysenselive@gmail.com',
-            to: 'kpohekar19@gmail.com',
+            //to: 'kpohekar19@gmail.com',
+            to: Device.PersonalEmail,
             subject: 'Immediate Action Required: Device Trigger Threshold Exceeded',
             html: html,
         };

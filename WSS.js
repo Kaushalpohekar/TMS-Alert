@@ -178,8 +178,7 @@ async function updateAlertInterval(deviceUID) {
     const now = new Date();
     const query = `
         INSERT INTO tms_alert_interval (DeviceUID, lastSend, message)
-        VALUES (?, ?, 'Trigger')
-        ON DUPLICATE KEY UPDATE lastSend = ?;
+        VALUES (?, ?, 'Trigger');
     `;
     await pool.execute(query, [deviceUID, now, now]);
 }

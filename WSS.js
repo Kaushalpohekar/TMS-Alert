@@ -4,9 +4,10 @@ const https = require('https');
 const fs = require('fs');
 
 const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/senso.senselive.in/privkey.pem', 'utf8'),
-    key: fs.readFileSync('/etc/letsencrypt/live/senso.senselive.in/fullchain.pem', 'utf8')
+    cert: fs.readFileSync('/etc/letsencrypt/live/senso.senselive.in/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/senso.senselive.in/privkey.pem')
 };
+
 
 
 const server = https.createServer(options);

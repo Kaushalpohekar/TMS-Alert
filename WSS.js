@@ -111,20 +111,14 @@ const PORT = 3100;
 const subscriptions = {};
 
 wss.on('connection', (ws) => {
-    console.log('Client connected to WebSocket server');
-
     ws.on('message', (message) => {
-        if (!message || typeof message !== 'string') {
-            console.error('Received an invalid message:', message);
-            return;
-        }
-
         try {
-            const { action, topic } = JSON.parse(message);
+            const parsedMessage = message.toString();
+            const { action, topic } = JSON.parse(parsedMessage);
+
             if (action === 'subscribe') {
                 subscriptions[topic] = subscriptions[topic] || [];
                 subscriptions[topic].push(ws);
-                console.log(`Client subscribed to topic: ${topic}`);
             }
         } catch (error) {
             console.error('Error parsing message:', error);
@@ -132,7 +126,6 @@ wss.on('connection', (ws) => {
     });
 
     ws.on('close', () => {
-        console.log('Client disconnected from WebSocket server');
         Object.keys(subscriptions).forEach(topic => {
             subscriptions[topic] = subscriptions[topic].filter(client => client !== ws);
         });
